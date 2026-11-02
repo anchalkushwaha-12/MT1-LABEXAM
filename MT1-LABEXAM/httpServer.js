@@ -21,7 +21,7 @@ function sendJson(res, statusCode, data) {
 }
 
 function sendText(res, statusCode, message) {
-  res.writeHead(statusCode, { "Content-Type": "text/html; charset=utf-8" });
+  res.writeHead(statusCode, { "Content-Type":  "text/html; charset=utf-8" });
   res.end(message);
 }
 

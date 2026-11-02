@@ -1,23 +1,19 @@
-// Part B: Shopping Cart REST API using Express.js
+
 import express from 'express';
 
 const app = express();
 const PORT = 4000;
-
-// Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Shopping cart stored in a JavaScript array (no database)
 let cart = [
   { id: 1, productName: 'Wireless Mouse', price: 799, quantity: 2, category: 'Electronics' },
   { id: 2, productName: 'Notebook', price: 120, quantity: 5, category: 'Stationery' },
   { id: 3, productName: 'Water Bottle', price: 350, quantity: 1, category: 'Home' },
 ];
 
-// Total price of one item = price x quantity
 const withTotal = (item) => ({ ...item, totalPrice: item.price * item.quantity });
 
-// Validate product fields; returns an error message or null
+
 const validateProduct = (p, requireId) => {
   if (!p || typeof p !== 'object') return 'Request body is required';
   if (requireId && p.id === undefined) return 'id is required';
@@ -28,12 +24,11 @@ const validateProduct = (p, requireId) => {
   return null;
 };
 
-// GET /cart - all items
 app.get('/cart', (req, res) => {
   res.json(cart.map(withTotal));
 });
 
-// GET /cart/:id - single item
+
 app.get('/cart/:id', (req, res) => {
   const id = Number(req.params.id);
   const item = cart.find((p) => p.id === id);

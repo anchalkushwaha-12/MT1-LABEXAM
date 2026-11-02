@@ -36,7 +36,6 @@ app.get('/cart/:id', (req, res) => {
   res.json(withTotal(item));
 });
 
-// POST /cart - add product
 app.post('/cart', (req, res) => {
   const error = validateProduct(req.body, true);
   if (error) return res.status(400).json({ error });
@@ -51,7 +50,6 @@ app.post('/cart', (req, res) => {
   res.status(201).json({ message: 'Product added successfully', product });
 });
 
-// PUT /cart/:id - update product
 app.put('/cart/:id', (req, res) => {
   const id = Number(req.params.id);
   const index = cart.findIndex((p) => p.id === id);
@@ -64,8 +62,6 @@ app.put('/cart/:id', (req, res) => {
   cart[index] = { id, productName, price, quantity, category };
   res.json({ message: 'Product updated successfully', product: withTotal(cart[index]) });
 });
-
-// DELETE /cart/:id - remove product
 app.delete('/cart/:id', (req, res) => {
   const id = Number(req.params.id);
   const index = cart.findIndex((p) => p.id === id);
@@ -80,7 +76,6 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// Error handler (e.g. malformed JSON body)
 app.use((err, req, res, next) => {
   if (err.type === 'entity.parse.failed') {
     return res.status(400).json({ error: 'Invalid JSON in request body' });

@@ -1,0 +1,13 @@
+{
+  "name": "shopping-cart",
+  "version": "1.0.0",
+  "description": "Shopping Cart Management Web Application - Node.js HTTP, FS and Express.js",
+  "type": "module",
+  "scripts": {
+    "http": "node httpServer.js",
+    "express": "node expressApp.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
